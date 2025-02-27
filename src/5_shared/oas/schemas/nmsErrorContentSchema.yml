@@ -1,0 +1,167 @@
+NmsErrorContent:
+  type: object
+  required:
+    - content
+    - empty
+    - first
+    - last
+    - number
+    - numberOfElements
+    - pageable
+    - size
+    - sort
+    - totalElements
+    - totalPages
+
+  properties:
+    content:
+      type: array
+      items:
+        $ref: '#/Content'
+    empty:
+      type: boolean
+      example: false
+    first:
+      type: boolean
+      example: true
+    last:
+      type: boolean
+      example: false
+    number:
+      type: integer
+      example: 0
+    numberOfElements:
+      type: integer
+      example: 8
+    pageable:
+      type: object
+      example:
+        $ref: '#/Pageable'
+
+Content:
+  type: object
+  required:
+    - errorDate
+    - facilityNo
+    - getId
+    - manageName
+    - manageNo
+    - nmsConnectionFlg
+    - nmsIp
+    - nmsName
+    - nmsOtdr
+    - nodeName
+    - period
+    - port9
+    - port10
+    - port11
+    - portConfig9
+    - portConfig10
+    - portConfig11
+    - ringName
+
+  properties:
+    errorDate:
+      type: string
+      description: '발생시간!/아이피'
+      example: '2024-08-01 15:24:17'
+    facilityNo:
+      type: integer
+      # description: ''
+      example: 21386
+    getId:
+      type: integer
+      description: 'getId'
+      example: 2097
+    manageName:
+      type: string | null
+      # description: ''
+      example: null
+    manageNo:
+      type: string
+      description: '시설물ID'
+      example: '22044VDE10102'
+    nmsConnectionFlg:
+      type: string
+      # description: ''
+      example: 'Disconnected'
+    nmsIp:
+      type: string
+      description: '발생시간/아이피!'
+      example: '10.62.49.19'
+    nmsName:
+      type: string
+      description: '스위치종류'
+      example: 'D3210GV'
+    nmsOtdr:
+      type: string
+      # description: ''
+      example: '장애'
+    nodeName:
+      type: string | null
+      description: '노드!/링'
+      example: null
+    period:
+      type: string
+      # description: ''
+      example: '208d 0h 3m'
+    port9:
+      type: string
+      # description: ''
+      example: '1'
+    port10:
+      type: string
+      # description: ''
+      example: '1'
+    port11:
+      type: string
+      # description: ''
+      example: '2'
+    portConfig9:
+      type: string
+      # description: ''
+      example: '1'
+    portConfig10:
+      type: string
+      # description: ''
+      example: '1'
+    portConfig11:
+      type: string
+      # description: ''
+      example: '1'
+    ringName:
+      type: string | null
+      description: '노드/링!'
+      example: null
+
+Pageable:
+  type: object
+  required:
+    - offset
+    - pageNumber
+    - pageSize
+    - paged
+    - sort
+    - unpaged
+  properties:
+    offset:
+      type: integer
+      example: 0
+    pageNumber:
+      type: integer
+      example: 0
+    pageSize:
+      type: integer
+      example: 8
+    paged:
+      type: boolean
+      example: true
+    sort:
+      type: object
+      example:
+        unsorted: false
+        sorted: true
+        empty: false
+    unpaged:
+      type: boolean
+      example: false

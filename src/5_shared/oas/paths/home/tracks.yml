@@ -1,0 +1,38 @@
+get:
+  tags:
+    - 홈 대시보드
+  summary: pcn-nms-id 홈(대시보드) - 우측 패널 선로(미터 단위) 추가 데이터
+  description: |
+    우측에 노출되는 선로(미터 단위)
+  responses:
+    '200':
+      description: |
+        우측에 노출되는 선로 추가 데이터
+
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - code
+              - message
+              - data
+            properties:
+              code:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: '시설물 카테고리 그룹 조회 성공'
+              data:
+                type: array
+                items:
+                  $ref: '../../schemas/FacilitiesSchema.yml#/Tracks'
+              newData:
+                type: object
+                nullable: true
+                example: null
+              page:
+                type: object
+                nullable: true
+                example: null

@@ -1,0 +1,36 @@
+get:
+  tags:
+    - 홈 대시보드
+  summary: pcn-nms-id 홈(대시보드) - 장애 에러 데이터(20s - interval)
+  description: |
+    우측에 노출되는 장애 에러 데이터 관련 API
+  responses:
+    '200':
+      description: 우측에 노출되는 장애 에러 데이터 관련 API - 장애 알림 개수 조회 성공
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - code
+              - message
+              - data
+            properties:
+              code:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: '장애 알림 개수 조회 성공'
+              data:
+                type: array
+                items:
+                  $ref: '../../schemas/ErrorCountSchema.yml#/ErrorCount'
+              newData:
+                type: object
+                nullable: true
+                example: null
+              page:
+                type: object
+                nullable: true
+                example: null

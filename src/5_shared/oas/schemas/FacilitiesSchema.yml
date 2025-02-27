@@ -1,0 +1,59 @@
+Facilities:
+  type: object
+  required:
+    - groupName
+    - groupCode
+    - facilityName
+    - facilityCode
+    - facilityCount
+  properties:
+    groupName:
+      type: string
+      description: 'Facilities의 그룹명'
+      example: '시설물'
+    groupCode:
+      type: string
+      description: 'Facilities의 코드 이넘'
+      example: 'facility'
+    facilityName:
+      type: string
+      description: 'facilityName'
+      example: 'TMS'
+    facilityCode:
+      type: string
+      # description: '화면에 그려지지 않음'
+      example: 'TM'
+    facilityCount:
+      type: integer
+      description: 'facilityCount'
+      example: 15
+
+Tracks:
+  type: object
+  required:
+    - groupName
+    - groupCode
+    - facilityName
+    - facilityCode
+    - trackLength
+  properties:
+    groupName:
+      type: string
+      description: 'Facilities의 그룹명'
+      example: '선로'
+    groupCode:
+      type: string
+      description: 'Facilities의 코드 이넘'
+      example: 'track'
+    facilityName:
+      type: string
+      description: 'facilityName'
+      example: '통신선로'
+    facilityCode:
+      type: string
+      # description: '화면에 그려지지 않음'
+      example: 'L'
+    trackLength:
+      type: integer
+      description: 'trackLength'
+      example: 1579945

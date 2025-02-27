@@ -1,0 +1,34 @@
+get:
+  tags:
+    - 홈 대시보드(장애 알람 리스트)
+  summary: pcn-nms-id 홈(대시보드) - 장애 알람 리스트(OTDR장애)(20s - interval)
+  description: |
+    중앙 하단에 노출되는 장애 알람 리스트(OTDR장애)
+  responses:
+    '200':
+      description: 중앙 하단에 노출되는 장애 알람 리스트(OTDR장애)
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - code
+              - message
+              - data
+            properties:
+              code:
+                type: number
+                example: 200
+              message:
+                type: string
+                example: 'OTDR장애 조회 성공'
+              data:
+                $ref: '../../schemas/nmsErrorContentSchema.yml#/NmsErrorContent'
+              newData:
+                type: object
+                nullable: true
+                example: null
+              page:
+                type: object
+                nullable: true
+                example: null

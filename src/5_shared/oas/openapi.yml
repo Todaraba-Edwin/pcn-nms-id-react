@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: 'pcn-nms-id'
+  version: '1.0.2'
+tags:
+  - name: 홈 대시보드
+    description: 'pcn-nms-id 홈(대시보드)'
+  - name: 홈 대시보드(장애 알람 리스트)
+    description: 'pcn-nms-id 홈(대시보드 장애 알람 리스트) - 배열에서 최신 오류 5개만 slice; errorType -> FE추가'
+
+paths:
+  /api/mapSetting:
+    $ref: './paths/home/mapSetting.yml'
+  /api/nms/errors/count:
+    $ref: './paths/home/errorsCount.yml'
+  /api/nms/nmsErrorContent:
+    $ref: './paths/home/nmsErrorContent.yml'
+  /api/nms/nmsWornContent:
+    $ref: './paths/home/nmsWornContent.yml'
+  /api/nms/otdrErrorContent:
+    $ref: './paths/home/otdrErrorContent.yml'
+  /api/group/facilities:
+    $ref: './paths/home/facilities.yml'
+  /api/group/tracks:
+    $ref: './paths/home/tracks.yml'
+  

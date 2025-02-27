@@ -1,0 +1,212 @@
+nmsWornContent:
+  type: object
+  required:
+    - content
+    - empty
+    - first
+    - last
+    - number
+    - numberOfElements
+    - pageable
+    - size
+    - sort
+    - totalElements
+    - totalPages
+
+  properties:
+    content:
+      type: array
+      items:
+        $ref: '#/Content'
+    empty:
+      type: boolean
+      example: false
+    first:
+      type: boolean
+      example: true
+    last:
+      type: boolean
+      example: false
+    number:
+      type: integer
+      example: 0
+    numberOfElements:
+      type: integer
+      example: 8
+    pageable:
+      type: object
+      example:
+        $ref: '#/Pageable'
+
+Content:
+  type: object
+  required:
+    - nmsIp
+    - manageNo
+    - facilityNo
+    - switchName
+    - nmsName
+    - ringName
+    - nodeName
+    - deviceName
+    - portNumber
+    - port1
+    - port2
+    - port3
+    - port4
+    - port5
+    - port6
+    - port7
+    - port8
+    - port9
+    - port10
+    - port11
+    - port12
+    - port13
+    - port14
+    - errorDate
+    - nodeNo
+    - ringNo
+    - facilityType
+
+  properties:
+    nmsIp:
+      type: string
+      description: '발생시간/아이피!'
+      example: '10.62.67.27'
+    manageNo:
+      type: string
+      description: '시설물ID'
+      example: '22042AVS10101'
+    facilityNo:
+      type: string
+      # description: ''
+      example: '41'
+    switchName:
+      type: string
+      # description: ''
+      example: 'test03_L'
+    nmsName:
+      type: string
+      # description: ''
+      example: 'INOS-6000 GigaBit Ethernet Switch'
+    ringName:
+      type: string
+      description: '노드/링!'
+      example: '부평-광터 2링'
+    nodeName:
+      type: string
+      description: '노드!/링'
+      example: '원주청'
+    deviceName:
+      type: string
+      description: '스위치종류'
+      example: 'INOS-6000'
+    portNumber:
+      type: integer
+      # description: ''
+      example: 4
+    port1:
+      type: string
+      # description: ''
+      example: '2'
+    port2:
+      type: string
+      # description: ''
+      example: '2'
+    port3:
+      type: string
+      # description: ''
+      example: '2'
+    port4:
+      type: string
+      # description: ''
+      example: '2'
+    port5:
+      type: string
+      # description: ''
+      example: '2'
+    port6:
+      type: string
+      # description: ''
+      example: '2'
+    port7:
+      type: string
+      # description: ''
+      example: '2'
+    port8:
+      type: string
+      # description: ''
+      example: '2'
+    port9:
+      type: string
+      # description: ''
+      example: '2'
+    port10:
+      type: string
+      # description: ''
+      example: '2'
+    port11:
+      type: string
+      # description: ''
+      example: '2'
+    port12:
+      type: string
+      # description: ''
+      example: '2'
+    port13:
+      type: string
+      # description: ''
+      example: '2'
+    port14:
+      type: string
+      # description: ''
+      example: '2'
+    errorDate:
+      type: string
+      description: '발생시간!/아이피'
+      example: '2024-08-07\n10:22:31'
+    nodeNo:
+      type: integer
+      # description: ''
+      example: 21248
+    ringNo:
+      type: integer
+      # description: ''
+      example: 139
+    facilityType:
+      type: string
+      # description: ''
+      example: 'AV'
+
+Pageable:
+  type: object
+  required:
+    - offset
+    - pageNumber
+    - pageSize
+    - paged
+    - sort
+    - unpaged
+  properties:
+    offset:
+      type: integer
+      example: 0
+    pageNumber:
+      type: integer
+      example: 0
+    pageSize:
+      type: integer
+      example: 8
+    paged:
+      type: boolean
+      example: true
+    sort:
+      type: object
+      example:
+        unsorted: false
+        sorted: true
+        empty: false
+    unpaged:
+      type: boolean
+      example: false

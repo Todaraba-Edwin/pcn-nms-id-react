@@ -1,0 +1,19 @@
+ErrorCount:
+  type: object
+  required:
+    - connectErrorCount
+    - portErrorCount
+    - otdrErrorCount
+  properties:
+    connectErrorCount:
+      type: integer
+      description: NMS 연결장애
+      example: 50
+    portErrorCount:
+      type: integer
+      description: NMS 포트장애
+      example: 20
+    otdrErrorCount:
+      type: integer
+      description: NMS OTDR장애
+      example: 9

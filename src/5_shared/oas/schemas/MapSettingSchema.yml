@@ -1,0 +1,68 @@
+MapSetting:
+  type: object
+  required:
+    - mapSettingNo
+    - defaultLon
+    - defaultLat
+    - viewMaxLevel
+    - viewMinLevel
+    - defaultZoom
+    - projection
+    - labelTransparent
+    - trackSetting
+  properties:
+    mapSettingNo:
+      type: integer
+      example: 1
+    defaultLon:
+      type: number
+      format: float
+      example: 127.216331
+    defaultLat:
+      type: number
+      format: float
+      example: 37.636206
+    viewMaxLevel:
+      type: integer
+      example: 25
+    viewMinLevel:
+      type: integer
+      example: 7
+    defaultZoom:
+      type: integer
+      example: 9
+    projection:
+      type: string
+      example: 'EPSG:3857'
+    labelTransparent:
+      type: integer
+      example: 5
+    maxMargin:
+      type: number
+      nullable: true
+      example: null
+    minMargin:
+      type: number
+      nullable: true
+      example: null
+    trackSetting:
+      type: array
+      items:
+        $ref: "#/TrackSetting"
+
+TrackSetting:
+  type: object
+  required:
+    - trackId
+    - trackColor
+    - trackWidth
+  properties:
+    trackId:
+      type: string
+      example: 'LS1'
+    trackColor:
+      type: string
+      example: '#ff5500'
+    trackWidth:
+      type: string
+      example: '2.0'
