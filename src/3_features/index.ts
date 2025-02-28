@@ -1,2 +1,2 @@
-export * from './imagePath';
+export * from './common';
 export * from './openLayers';

@@ -1,12 +1,10 @@
-import { GlobalStyle, Router } from './1_pages';
+import * as PT from './1_pages/_templates';
 
 function App() {
   return (
-    <main>
-      <GlobalStyle>
-        <Router />
-      </GlobalStyle>
-    </main>
+    <PT.StyledThemplate>
+      <PT.RouterTemplate />
+    </PT.StyledThemplate>
   );
 }
 
