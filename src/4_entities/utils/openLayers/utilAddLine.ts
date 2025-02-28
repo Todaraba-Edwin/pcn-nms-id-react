@@ -1,31 +1,21 @@
-import { getDistance } from 'ol/sphere';
-import Feature from 'ol/Feature';
-import LineString from 'ol/geom/LineString';
-import { Stroke, Style } from 'ol/style';
-import Point from 'ol/geom/Point';
-import Fill from 'ol/style/Fill';
-import Text from 'ol/style/Text';
-import Circle from 'ol/style/Circle';
-import OlMap from 'ol/Map';
-import { Coordinate } from 'ol/coordinate';
-import VectorSource from 'ol/source/Vector';
-import VectorLayer from 'ol/layer/Vector';
+import * as SIOl from '@/5_shared/imports/openLayersImports';
 
 type Props = {
-  map: OlMap;
-  lineList: Coordinate[];
+  map: SIOl.OlMap;
+  lineList: SIOl.Coordinate[];
 };
 
 export const utilAddLine = ({ map, lineList }: Props) => {
   const lineCoordinates = lineList;
+  console.log('lineCoordinates', lineCoordinates);
 
-  const lineFeature = new Feature({
-    geometry: new LineString(lineCoordinates),
+  const lineFeature = new SIOl.Feature({
+    geometry: new SIOl.LineString(lineCoordinates),
   });
 
   lineFeature.setStyle(
-    new Style({
-      stroke: new Stroke({
+    new SIOl.Style({
+      stroke: new SIOl.Stroke({
         color: 'blue',
         width: 4,
       }),
@@ -35,8 +25,16 @@ export const utilAddLine = ({ map, lineList }: Props) => {
   // 2. 거리 계산
   const totalDistance = lineCoordinates.reduce((acc, coord, index) => {
     if (index === 0) return acc;
-    return acc + getDistance(lineCoordinates[index - 1], coord);
+    console.log(`
+        acc : ${acc} 
+        coord : ${coord} 
+        index : ${index} 
+      `);
+
+    return acc + SIOl.getDistance(lineCoordinates[index - 1], coord);
   }, 0);
+
+  console.log('totalDistance', totalDistance);
 
   const totalDistanceNumber = parseFloat(totalDistance.toFixed(1));
 
@@ -45,7 +43,7 @@ export const utilAddLine = ({ map, lineList }: Props) => {
   let midPoint = lineCoordinates[0];
 
   for (let i = 1; i < lineCoordinates.length; i++) {
-    const segmentDistance = getDistance(
+    const segmentDistance = SIOl.getDistance(
       lineCoordinates[i - 1],
       lineCoordinates[i]
     );
@@ -70,25 +68,25 @@ export const utilAddLine = ({ map, lineList }: Props) => {
 
   const updateTextStyle = () => {
     const zoomLevel = map.getView().getZoom() ?? 0; // 현재 줌 레벨
-    return new Style({
-      text: new Text({
+    return new SIOl.Style({
+      text: new SIOl.Text({
         text: `${totalDistance} m`,
         font: `bold ${getFontSize(zoomLevel)} Arial`,
-        fill: new Fill({ color: 'red' }),
-        stroke: new Stroke({ color: 'white', width: 2 }),
+        fill: new SIOl.Fill({ color: 'red' }),
+        stroke: new SIOl.Stroke({ color: 'white', width: 2 }),
         offsetY: -10,
       }),
-      image: new Circle({
+      image: new SIOl.Circle({
         radius: 5,
-        fill: new Fill({ color: 'red' }),
-        stroke: new Stroke({ color: 'white', width: 2 }),
+        fill: new SIOl.Fill({ color: 'red' }),
+        stroke: new SIOl.Stroke({ color: 'white', width: 2 }),
       }),
     });
   };
 
   // 중간 지점 텍스트
-  const textFeature = new Feature({
-    geometry: new Point(midPoint),
+  const textFeature = new SIOl.Feature({
+    geometry: new SIOl.Point(midPoint),
   });
 
   textFeature.setStyle(updateTextStyle());
@@ -98,11 +96,11 @@ export const utilAddLine = ({ map, lineList }: Props) => {
     textFeature.setStyle(updateTextStyle());
   });
 
-  const vectorSource = new VectorSource({
+  const vectorSource = new SIOl.VectorSource({
     features: [lineFeature, textFeature],
   });
 
-  const vectorLayer = new VectorLayer({
+  const vectorLayer = new SIOl.VectorLayer({
     source: vectorSource,
   });
 

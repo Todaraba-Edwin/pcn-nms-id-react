@@ -1,5 +1,5 @@
 import * as ST from '@/5_shared/types';
-import * as olProj from 'ol/proj';
+import * as SIOl from '@/5_shared/imports/openLayersImports';
 
 type Props = {
   coordinateSystemType: ST.CSTypes;
@@ -14,7 +14,7 @@ export const utilTransformEPSG4326 = ({
 }: Props) => {
   switch (coordinateSystemType) {
     case ST.CSTypes['EPSG_3857']:
-      return originLonLat.map((list) => olProj.toLonLat(list));
+      return originLonLat.map((list) => SIOl.toLonLat(list));
     default:
       // EPSG_4326:WGS84
       return originLonLat;

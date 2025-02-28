@@ -1,5 +1,5 @@
-import * as olProj from 'ol/proj';
 import * as ST from '@/5_shared/types';
+import * as SIOl from '@/5_shared/imports/openLayersImports';
 
 type CoordinateSystemType = {
   coordinateSystemType: ST.CSTypes;
@@ -21,7 +21,7 @@ export const utilTransformEPSG3857_isArr = ({
 }: Props) => {
   switch (coordinateSystemType) {
     case ST.CSTypes['EPSG_4326']:
-      return originLonLat.map((list) => olProj.fromLonLat(list));
+      return originLonLat.map((list) => SIOl.fromLonLat(list));
     default:
       return originLonLat;
   }
@@ -33,7 +33,7 @@ export const utilTransformEPSG3857_nonArr = ({
 }: SingleProps) => {
   switch (coordinateSystemType) {
     case ST.CSTypes['EPSG_4326']:
-      return olProj.fromLonLat(originLonLat);
+      return SIOl.fromLonLat(originLonLat);
     default:
       return originLonLat;
   }

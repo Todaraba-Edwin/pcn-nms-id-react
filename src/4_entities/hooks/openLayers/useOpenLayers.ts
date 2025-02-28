@@ -1,8 +1,7 @@
 import * as R from 'react';
-import * as Ol from 'ol';
-import { default as OlLayer } from 'ol/layer/Tile';
 import * as EU from '@/4_entities/utils';
 import * as SC from '@/5_shared/constants';
+import * as SIOl from '@/5_shared/imports/openLayersImports';
 import * as ST from '@/5_shared/types';
 
 type Props = {
@@ -16,14 +15,14 @@ export const useOpenLayers = ({ examLines }: Props) => {
   R.useEffect(() => {
     if (!mapRef.current) return;
 
-    const map = new Ol.Map({
+    const map = new SIOl.Map({
       target: mapRef.current,
       layers: [
-        new OlLayer({
+        new SIOl.OlLayer({
           source: SC.mapSources.OSM,
         }),
       ],
-      view: new Ol.View({
+      view: new SIOl.View({
         projection: 'EPSG:3857', // 기본좌표계 EPSG:3857(Web Merctor)
         center: EU.utilTransformEPSG3857_nonArr({
           coordinateSystemType: ST.CSTypes['EPSG_4326'],
