@@ -1,1 +1,2 @@
-export * from './OpenLayers/OpenLayerWidg';
+export * from './LoginWidg/LoginWidg';
+export * from './OpenLayerWidg/OpenLayerWidg';
