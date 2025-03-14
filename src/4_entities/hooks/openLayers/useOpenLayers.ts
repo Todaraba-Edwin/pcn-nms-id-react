@@ -1,45 +1,46 @@
 import * as R from 'react';
 import * as EU from '@/4_entities/utils';
 import * as SC from '@/5_shared/constants';
-import * as SIOl from '@/5_shared/imports/openLayersImports';
 import * as ST from '@/5_shared/types';
+import * as SIOl from '@/5_shared/imports/openLayersImports';
 
-type Props = {
-  examLines: number[][][];
-};
+export const useOpenLayers = () => {
+    const mapRef = R.useRef<HTMLDivElement>(null);
+    const [map, setMap] = R.useState<SIOl.Map | null>(null);
 
-export const useOpenLayers = ({ examLines }: Props) => {
-  const { testPosition } = SC.examlocations;
-  const mapRef = R.useRef<HTMLDivElement>(null);
+    R.useEffect(() => {
+        if (!mapRef.current) return;
 
-  R.useEffect(() => {
-    if (!mapRef.current) return;
+        // 한반도 전체 범위(EPSG_4326)
+        const [west, south, east, north] = [116, 32, 141, 44];
+        const mapExtent = EU.utilTransformEPSG3857_isArr({
+            coordinateSystemType: ST.CSTypes.EPSG_4326,
+            originLonLat: [
+                [west, south],
+                [east, north],
+            ],
+        }).flat();        
 
-    const map = new SIOl.Map({
-      target: mapRef.current,
-      layers: [
-        new SIOl.OlLayer({
-          source: SC.mapSources.OSM,
-        }),
-      ],
-      view: new SIOl.View({
-        projection: 'EPSG:3857', // 기본좌표계 EPSG:3857(Web Merctor)
-        center: EU.utilTransformEPSG3857_nonArr({
-          coordinateSystemType: ST.CSTypes['EPSG_4326'],
-          originLonLat: testPosition,
-        }),
-        zoom: 12,
-      }),
-    });
+        const newMap = new SIOl.Map({
+            target: mapRef.current,
+            layers: [SC.mapSources],
+            controls: [new SIOl.OlZoom({ className: 'custom-zoom' })],
+            view: new SIOl.View({
+                projection: 'EPSG:3857',
+                center: EU.utilTransformEPSG3857_nonArr({
+                    coordinateSystemType: ST.CSTypes['EPSG_4326'],
+                    originLonLat: SC.examlocations.namYangJu,
+                }),
+                zoom: 12,
+                minZoom: 7,
+                extent: mapExtent,
+            }),
+        });
 
-    examLines.forEach((list) => {
-      EU.utilAddLine({
-        map,
-        lineList: list,
-      });
-    });
+        setMap(newMap);
 
-    return () => map.setTarget(undefined);
-  }, [testPosition, examLines]);
-  return { mapRef };
+        return () => newMap.setTarget(undefined);
+    }, []);
+
+    return { mapRef, map };
 };
